@@ -1,0 +1,20 @@
+<div class="row contenedor">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset 2">
+    <h2>Modificar Libro</h2>
+    <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Title</label>
+        <input type="text" class="form-control" id="title" formControlName="title" [(ngModel)]="book.title">
+      </div>
+      <div class="form-group">
+        <label for="surname">Author</label>
+        <input type="text" class="form-control" id="author" formControlName="author" [(ngModel)]="book.author">
+      </div>
+
+      <div class="buttons">
+        <a class="btn btn-primary cancelar" routerLink="/libros">Volver</a>
+        <button id="submit" class="btn btn-success" type="submit" [disabled]="!bookForm.valid || !validate">Modificar Libro</button>
+      </div>
+    </form>
+  </div>
+</div>

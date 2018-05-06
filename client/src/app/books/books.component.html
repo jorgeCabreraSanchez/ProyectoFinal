@@ -1,0 +1,93 @@
+<h3>Libros favoritos del usuario</h3>
+<hr>
+
+<a class="btn btn-primary float-md-right first" routerLink="/contactos/libros/{{ idContact }}/añadirExistente">Añadir libro existente</a>
+<button class="btn btn-danger" data-toggle="modal" data-target="#deleteAllBooks">Quitar todos los libros de favoritos</button>
+<br>
+<br>
+<p>
+  <a [routerLink]="['']" (click)="logout()">Cerrar sesión</a>
+</p>
+<p>
+  <a [routerLink]="['/change-password']">Cambiar contraseña</a>
+</p>
+<br>
+<table class="table table-bordered table-striped tabla">
+  <thead>
+    <tr class="filters">
+      <th>Título</th>
+      <th>Autor</th>
+      <th>Administrar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let book of books">
+      <td>{{ book.title }}</td>
+      <td>{{ book.author }}</td>
+      <td>
+        <button class="btn btn-danger" data-toggle="modal" data-target="#deleteBook" (click)="idEliminar(book.id)">
+          <fa name="trash"></fa>Quitar de favoritos</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<hr>
+<a class="btn btn-primary float-md-right" routerLink="/contactos">Volver</a>
+
+
+<!-- Modal de eliminar un libro -->
+<div class="modal fade" id="deleteBook">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Confirmar acción</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        ¿Estás seguro de querer eliminar este libro de tus favoritos?
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button class="btn btn-danger" (click)="delBook(idContact, bookId)" data-toggle="modal" data-target="#deleteBook">
+          Confirmar
+        </button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!--Modal de eliminar todos los libros -->
+<div class="modal fade" id="deleteAllBooks">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Confirmar acción</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        ¿Estás seguro de querer todos los libros de favoritos?
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button class="btn btn-danger" (click)="delBooks(idContact)" data-toggle="modal" data-target="#deleteAllBooks">
+          Confirmar
+        </button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+      </div>
+
+    </div>
+  </div>
+</div>

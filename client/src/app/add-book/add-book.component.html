@@ -1,0 +1,29 @@
+<h3>Añadir libro existente</h3>
+<hr>
+<p>
+  <a [routerLink]="['']">Cerrar sesión</a>
+</p>
+<p>
+  <a [routerLink]="['/change-password']">Cambiar contraseña</a>
+</p>
+<br>
+<table class="table table-bordered table-striped tabla">
+  <thead>
+    <tr class="filters">
+      <th>Título</th>
+      <th>Autor</th>
+      <th>Añadir</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let book of books">
+      <td>{{ book.title }}</td>
+      <td>{{ book.author }}</td>
+      <td>
+        <button class="btn btn-success" (click)="addBook(idContact, book.id)">Añadir a mi lista</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<hr>
+<button class="btn btn-primary float-md-right" routerLink="/contactos/libros/{{ idContact }}">Volver</button>

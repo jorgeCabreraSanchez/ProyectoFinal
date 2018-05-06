@@ -1,0 +1,71 @@
+<h3>Listado de Contactos</h3>
+<hr>
+<a class="btn btn-primary float-md-right" routerLink="/contactos/nuevo">Añadir nuevo Contacto</a>
+<p>
+  <a [routerLink]="['']" (click)="logout()">Cerrar sesión</a>
+</p>
+<p>
+  <a [routerLink]="['/change-password']">Cambiar contraseña</a>
+</p>
+<br>
+<table class="table table-bordered table-striped tabla">
+  <thead>
+    <tr class="filters">
+      <th>Usuario</th>
+      <th>Nombre</th>
+      <th>Apellidos</th>
+      <th>Teléfono</th>
+      <th>Email</th>
+      <th>Imagen</th>
+      <th>Administrar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let contact of contacts">
+      <td>{{ contact.username }}</td>
+      <td>{{ contact.name }}</td>
+      <td>{{ contact.surname }}</td>
+      <td>{{ contact.phone }}</td>
+      <td>{{ contact.email }}</td>
+      <td><img src="{{ contact.image }}" alt="No hay imagen" height="42" width="80"></td>            
+      <td>
+        <button class="btn btn-success" routerLink="/contactos/modificar/{{ contact.id }}">
+          <fa name="edit"></fa>
+        </button>
+        <button class="btn btn-danger" data-toggle="modal" data-target="#myModal" (click)="idEliminar(contact.id)">
+          <fa name="trash"></fa>
+        </button>
+        <button class="btn btn-info" routerLink="/contactos/libros/{{ contact.id }}">
+          <fa name="search"></fa>Listado de libros</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Confirmar acción</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        ¿Estás seguro de querer eliminar este contacto?
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button class="btn btn-danger" (click)="delContact(contactId,$event)" data-toggle="modal" data-target="#myModal">
+          Confirmar
+        </button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+      </div>
+
+    </div>
+  </div>
+</div>

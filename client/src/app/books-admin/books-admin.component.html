@@ -1,0 +1,65 @@
+<h3>Gestión de libros</h3>
+<hr>
+<a class="btn btn-primary float-md-right " routerLink="/libros/crear">Añadir nuevo libro</a>
+<br>
+<br>
+<p>
+  <a [routerLink]="['']" (click)="logout()">Cerrar sesión</a>
+</p>
+<p>
+  <a [routerLink]="['/change-password']">Cambiar contraseña</a>
+</p>
+<br>
+<table class="table table-bordered table-striped tabla">
+  <thead>
+    <tr class="filters">
+      <th>Título</th>
+      <th>Autor</th>
+      <th>Administrar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let book of books">
+      <td>{{ book.title }}</td>
+      <td>{{ book.author }}</td>
+      <td>
+        <button class="btn btn-success" routerLink="/libros/editar/{{ book.id }}">
+          <fa name="edit"></fa>
+        </button>
+        <button class="btn btn-danger" data-toggle="modal" data-target="#myModal" (click)="idEliminar(book.id)"> 
+          <fa name="trash"></fa>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<hr>
+<a class="btn btn-primary float-md-right" routerLink="/contactos">Volver</a>
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Confirmar acción</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        ¿Estás seguro de querer eliminar este libro?
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button class="btn btn-danger" (click)="delBook(bookId)" data-toggle="modal" data-target="#myModal">
+          Confirmar
+        </button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
