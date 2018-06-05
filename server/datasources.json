@@ -29,8 +29,8 @@
         "secure": true,
         "port": 465,
         "auth": {
-          "user": "***",
-          "pass": "***"
+          "user": "SUSTITUIR",
+          "pass": "SUSTITUIR"
         }
       }
     ]

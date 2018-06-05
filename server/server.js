@@ -18,7 +18,6 @@ app.start = function() {
   });
 };
 
-
 app.use(loopback.token({
   model: app.models.AccessToken,
 }));
